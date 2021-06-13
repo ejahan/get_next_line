@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejahan <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ejahan <ejahan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 11:03:00 by ejahan            #+#    #+#             */
-/*   Updated: 2021/01/25 17:11:30 by ejahan           ###   ########.fr       */
+/*   Updated: 2021/06/13 19:14:00 by ejahan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static	int		ft_static(char *s, char **line)
+static	int	ft_static(char *s, char **line)
 {
 	int	i;
 
@@ -50,9 +50,9 @@ static	char	*allocate(size_t size, char *str)
 	return (str);
 }
 
-static	int		ft_free(char **str, char *buffer, int j, char **line)
+static	int	ft_free(char **str, char *buffer, int j, char **line)
 {
-	int i;
+	int	i;
 
 	if (j > 0)
 	{
@@ -73,13 +73,13 @@ static	int		ft_free(char **str, char *buffer, int j, char **line)
 	return (i);
 }
 
-int				get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
-	static	char	*str = NULL;
-	char			*buffer;
-	char			*tmp;
-	int				i;
-	int				j;
+	static char	*str = NULL;
+	char		*buffer;
+	char		*tmp;
+	int			i;
+	int			j;
 
 	j = 0;
 	if ((str == NULL && (str = allocate(0, str)) == NULL)
@@ -87,7 +87,7 @@ int				get_next_line(int fd, char **line)
 		|| fd < 0 || BUFFER_SIZE < 1 || line == NULL || read(fd, buffer, 0) < 0)
 		j = 1;
 	while (ft_strchr(str, '\n') == NULL
-			&& ((i = read(fd, buffer, BUFFER_SIZE)) > 0) && j == 0)
+		&& ((i = read(fd, buffer, BUFFER_SIZE)) > 0) && j == 0)
 	{
 		buffer[i] = '\0';
 		tmp = str;
